@@ -25,7 +25,23 @@
 //    when given the configuration object (relative from `gekko/plugins/`).
 // greedy: if this plugin wants to subscribe to a lot of events, but can function
 //    properly when some events wont be emitted.
-var plugins = [
+
+interface IPlugin {
+  name: string;
+  description: string;
+  slug: string;
+  async: boolean;
+  modes: string[];
+  silent?: boolean;
+  emits?: boolean;
+  greedy?: boolean;
+  path?: (str) => string;
+  version?: number;
+  dependencies?: Array<any>
+}
+
+
+const plugins :Readonly<Array<IPlugin>> = [
   {
     name: 'Candle writer',
     description: 'Store candles in a database',
@@ -232,4 +248,4 @@ var plugins = [
   }
 ];
 
-module.exports = plugins;
+export default plugins;
